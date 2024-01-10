@@ -14,16 +14,15 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  let expenditure =  transactions.reduce((acc, transaction) => {
-    if(!acc.hasOwnProperty(transaction.categoty)) {
-      acc[transaction.categoty] = {categoty:transaction.categoty, totalSpent: transaction.price};
+  let expenditure = transactions.reduce((acc, transaction) => {
+    if (!acc.hasOwnProperty(transaction.category)) {
+      acc[transaction.category] = { category: transaction.category, totalSpent: transaction.price };
     } else {
-      console.log(acc);
-      acc[transaction.categoty] = {...acc, totalSpent: acc.totalSpent + transaction.price};
+      acc[transaction.category] = { ...acc[transaction.category], totalSpent: acc[transaction.category]['totalSpent'] + transaction.price };
     }
+    return acc;
   }, {});
-  console.log(expenditure);
-  return [];
+  return Object.values(expenditure);
 }
 
 module.exports = calculateTotalSpentByCategory;
